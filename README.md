@@ -18,5 +18,34 @@ The library supports the parsing of most common features. These include:
 ## What is it good for?
 You can parse, mofify and save game files for a variety of Paradox games in your Pascal/Delphi application using a fully-functional DOM. There are no external dependencies and the library compiles on any current Delphi version. It hasn't been tested, but should also run with FPC.
 
+## How to get started?
+1.  Make sure you include the `Claus` unit file in the uses-clause:
+    ```pas
+    uses
+      {...} Claus;
+    ```
+2.  Declare a `TClausFile` variable:
+    ```pas
+    var
+      {...}
+      ClausFile: TClausFile;
+    ```
+3.  To load a Clausewitz definition file, use the `CreateFromFile` constructor:
+    ```pas
+      ClausFile := TClausFile.CreateFromFile('...');
+    ```
+    It takes the file path as argumment and reads the entire file in.
+4.  You can now edit the DOM tree view the `Values` property. This is the root node and gives you access to all values of the document:
+    ```pas
+      (ClausFile.Values[0] as TClausTextValue).Value := '...';
+    ```
+    Each value type has its own class declared. You can access their values via the `Value` property.
+    Values, constructors (key-value pairs) or collections (value groups) can be inserted, changed or deleted.
+6.  To save the modified file, use the `SaveToFile` procedure:
+    ```pas
+      ClausFile.SaveToFile('...');
+    ```
+    It takes the file path as argumment.
+
 ## What is missing?
 There are obviously a lot of edge-cases missing in this library. Some of which include variables, some edge-cases and typed objects. There are definitely a few scenarios where the parser wrongly throws an exception on valid code or where code is interpreted incorrectly. If you feel like there is something specifically missing, please create an issue or a pull request.
