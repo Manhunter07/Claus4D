@@ -9,7 +9,7 @@ The library supports the parsing of most common features. These include:
 * Constructors (including nested constructors)
 * Comments (both line and in-line comments)
 * Values
-   * Numbers
+   * Numbers (both interger and floating-point)
    * Dates
    * Colors (both RGB and hex)
    * Strings (quoted, unquoted or automatically-quoted)
